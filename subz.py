@@ -106,7 +106,7 @@ def combine_subdomains(output_dir):
     with open(combined_file, "w") as outfile:
         for root, dirs, files in os.walk(output_dir):
             for file in files:
-                if file.endswith(".txt") and "combined" not in file:  # Ignore any file that is already combined
+                if file.endswith(".txt") and "combined" not in file: 
                     with open(os.path.join(root, file), "r") as infile:
                         outfile.write(infile.read())
     print(f"{Fore.CYAN}Combined all subdomains into {combined_file}{Style.RESET_ALL}")
@@ -115,7 +115,7 @@ def combine_subdomains(output_dir):
 def process_domain(domain):
     output_dir = f"out/{domain}"
     Path(output_dir).mkdir(parents=True, exist_ok=True)
-
+    
     with open(f"{output_dir}/scan-results.txt", "w") as export_file:
         export_file.write(f"Subdomain enumeration for {domain} started at {datetime.now()}\n")
     
@@ -149,7 +149,7 @@ def process_domain(domain):
         remaining_time = (elapsed_time / i) * (total_steps - i)
         
         print(f"{Fore.GREEN}Elapsed Time: {str(timedelta(seconds=elapsed_time))}{Style.RESET_ALL}")
-
+        
         subdomains_file = f"{output_dir}/{step['description'].lower().replace(' ', '_')}.txt"
         if os.path.exists(subdomains_file):
             with open(subdomains_file) as f:
@@ -157,7 +157,7 @@ def process_domain(domain):
             print(f"{Fore.GREEN}Subdomains found in this step: {len(subdomains)}{Style.RESET_ALL}")
         else:
             print(f"{Fore.RED}No subdomains found in this step.{Style.RESET_ALL}")
-
+        
         with open(f"{output_dir}/scan-results.txt", "a") as export_file:
             export_file.write(f"Step {i}/{total_steps} - {step['description']} completed\n")
             export_file.write(f"Elapsed Time: {str(timedelta(seconds=elapsed_time))}\n")
@@ -171,7 +171,7 @@ def process_domain(domain):
     print(f"{Fore.CYAN}Separating emails from subdomains...{Style.RESET_ALL}")
     extract_emails_and_clean_subdomains(final_combined_file, output_dir)
 
-  print(f"\n{Fore.CYAN}{Style.BRIGHT}Running HTTPX on combined subdomains...{Style.RESET_ALL}")
+    print(f"\n{Fore.CYAN}{Style.BRIGHT}Running HTTPX on combined subdomains...{Style.RESET_ALL}")
     run_command(f"httpx -l {final_combined_file} -silent -o {output_dir}/httpx-live-subdomains.txt")
 
 def main():
