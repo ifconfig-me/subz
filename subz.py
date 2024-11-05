@@ -138,7 +138,7 @@ def process_domain(domain):
         {"command": f"findomain --target {domain} --unique-output {output_dir}/findomain.txt", "description": "Findomain", "output_file": f"{output_dir}/findomain.txt"},
         {"command": f"vita -d {domain} > {output_dir}/vita.txt", "description": "Vita", "output_file": f"{output_dir}/vita.txt"},
         {"command": f"subfinder -d {domain} -o {output_dir}/subfinder.txt", "description": "Subfinder", "output_file": f"{output_dir}/subfinder.txt"},
-        {"command": f"amass enum --passive -d {domain} -o {output_dir}/amass.txt", "description": "Amass", "output_file": f"{output_dir}/amass_passive.txt"},
+        # {"command": f"amass enum --passive -d {domain} -o {output_dir}/amass.txt", "description": "Amass", "output_file": f"{output_dir}/amass_passive.txt"},
         {"command": f"sublist3r -d {domain} -o {output_dir}/sublist3r.txt", "description": "Sublist3r", "output_file": f"{output_dir}/sublist3r.txt"},
         {"command": f"shuffledns -d {domain} -w {output_dir}/shuffledns-output.txt -r in/resolvers.txt -o {output_dir}/shuffledns.txt", "description": "Shuffledns", "output_file": f"{output_dir}/shuffledns.txt"},
         {"command": f"puredns resolve {output_dir}/shuffledns-output.txt --resolvers in/resolvers.txt -w {output_dir}/puredns-resolved.txt", "description": "PureDNS Resolve", "output_file": f"{output_dir}/puredns-resolved.txt"},
@@ -174,5 +174,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-# nav1n
